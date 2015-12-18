@@ -21,33 +21,52 @@ public class frogMove extends GraphicsProgram {
 		int oy = (int)oval.getY()/SQSIZE;
 		int dx = 0;
 		int dy = 0;
+		
+		/* get dx */
 		if ( ex == ox) {
 			dx = 0;
-		} else if ( ex < ox && ox != 0) {
-			dx = -1;
-		} else if ( ox != NROWS ) {
+		} else if ( ex < ox ) {
+			if ( ox != 0 ) {
+				dx = -1;
+			}			
+		} else if ( ox < NCOLS - 1 ) {
 			dx = 1;
 		}
+		
+		/* get dy */
+		if ( ey == oy) {
+			dy = 0;
+		} else if ( ey < oy ) {
+			if ( oy != 0 ) {
+				dy = -1;
+			}			
+		} else if ( oy < NROWS - 1 ) {
+			dy = 1;
+		}
+		
 				
 		moveStep(dx,dy);
 	}
 	
-	public void mouseMoved(MouseEvent e) {
-		int ex = e.getX()/SQSIZE;
-		int ey = e.getY()/SQSIZE;
-		int ox = (int)oval.getX()/SQSIZE;
-		int oy = (int)oval.getY()/SQSIZE;
-		int dx = 0;
-		int dy = 0;
-		if ( ex == ox) {
-			dx = 0;
-		} else if ( ex < ox && ox != 0) {
-			dx = -1;
-		} else if ( ox != NROWS ) {
-			dx = 1;
-		}
-		label.setLabel("ex,ey,ox,oy,dx,dy:" + ex + ", " + ey + ", " + ox + ", " + oy + ", " + dx + ", " + dy + ", ");
-	}
+	/* just for tesing */
+//	public void mouseMoved(MouseEvent e) {
+//		int ex = e.getX()/SQSIZE;
+//		int ey = e.getY()/SQSIZE;
+//		int ox = (int)oval.getX()/SQSIZE;
+//		int oy = (int)oval.getY()/SQSIZE;
+//		int dx = 0;
+//		int dy = 0;
+//		if ( ex == ox) {
+//			dx = 0;
+//		} else if ( ex < ox ) {
+//			if ( ox != 0 ) {
+//				dx = -1;
+//			}			
+//		} else if ( ox < NCOLS - 1 ) {
+//			dx = 1;
+//		}
+//		label.setLabel("ex,ey,ox,oy,dx,dy:" + ex + ", " + ey + ", " + ox + ", " + oy + ", " + dx + ", " + dy + ", ");
+//	}
 	
 	
 	/* move frog 
