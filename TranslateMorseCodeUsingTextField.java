@@ -9,12 +9,14 @@
 
 
 //
+import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.swing.JTextField;
+
 import acm.program.ConsoleProgram;
-import acmx.export.javax.swing.JTextField;
 
 
 public class TranslateMorseCodeUsingTextField extends ConsoleProgram {
@@ -24,18 +26,20 @@ public class TranslateMorseCodeUsingTextField extends ConsoleProgram {
 	
 	public void run() {
 		setup();
-		
+		txtfld.addActionListener(this);
+	}
+	
+	/* ActionPerformed */
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == txtfld) {
 			String line = txtfld.getText();
 			StringTokenizer token = new StringTokenizer(line);
-			
 			while(token.hasMoreTokens()){
 				String morse = translateWordToMorse(token.nextToken());
 				println(morse);
-			
+			}
 		}
-			println("Bye-bye.");
 	}
-	
 	
 	/* translate a word to MorseCod */
 	private String translateWordToMorse(String str) {
@@ -63,6 +67,7 @@ public class TranslateMorseCodeUsingTextField extends ConsoleProgram {
 		/* JTextField */
 		txtfld = new JTextField(50);
 		txtfld.setText("Hello");
+		add(txtfld,SOUTH);
 		
 		/* Hashmap for decode morsecod */
 		morsecode = new HashMap<Character, String>();
@@ -95,7 +100,7 @@ public class TranslateMorseCodeUsingTextField extends ConsoleProgram {
 	}
 	
 	/* CONSTANTS */
-	private static final String SENTINEL = "";
+	private static final String SENTINEL = "exit";
 	/* private instance variables */
 	private Map<Character, String> morsecode;
 	private JTextField txtfld;
