@@ -34,4 +34,14 @@ public class Album {
 		this.stock = stock;
 	}
 	
+	
+	/* Return a string representation of an album, listing
+	 * the album name ,the band name, and the number in stock
+	 */
+	public String toString() {
+		return ("\"" + albumName +
+				"\" by " + bandName +
+				": " + stock + " in stock.");
+	}
+	
 }
